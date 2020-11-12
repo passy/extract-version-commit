@@ -41,7 +41,7 @@ function run() {
                 core_1.info('No commits provided.');
                 return;
             }
-            const version_commits = commits.filter(c => (c.message || '').match(regex));
+            const version_commits = commits.filter((c) => (c.message || '').match(regex));
             if (version_commits.length === 0) {
                 core_1.info('No matching commits found.');
             }
@@ -49,7 +49,7 @@ function run() {
                 if (version_commits.length > 1) {
                     core_1.info(`Found more than one matching commit in the pushed commits. Selecting first of ${JSON.stringify(version_commits)}`);
                 }
-                core_1.setOutput('commit', version_commits[0].id);
+                core_1.setOutput('commit', version_commits[version_commits.length - 1].id);
             }
         }
         catch (error) {

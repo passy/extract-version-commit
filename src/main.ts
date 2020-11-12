@@ -1,5 +1,5 @@
-import {getInput, setFailed, info, setOutput, debug} from '@actions/core';
-import {context, GitHub} from '@actions/github';
+import {getInput, setFailed, info, setOutput} from '@actions/core';
+import {context} from '@actions/github';
 
 export async function run(): Promise<void> {
   try {
@@ -17,7 +17,9 @@ export async function run(): Promise<void> {
       return;
     }
 
-    const version_commits = commits.filter(c => (c.message || '').match(regex));
+    const version_commits = commits.filter((c: {message?: string}) =>
+      (c.message || '').match(regex)
+    );
 
     if (version_commits.length === 0) {
       info('No matching commits found.');
@@ -30,7 +32,7 @@ export async function run(): Promise<void> {
         );
       }
 
-      setOutput('commit', version_commits[0].id);
+      setOutput('commit', version_commits[version_commits.length - 1].id);
     }
   } catch (error) {
     setFailed(error.message);

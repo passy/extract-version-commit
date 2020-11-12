@@ -1,5 +1,5 @@
 name: 'Extract version commit'
-description: 'Extracts the first commit matching the provided version_regex'
+description: 'Extracts the last commit matching the provided version_regex'
 outputs:
   commit:
     description: The commit hash matching, if found any.
