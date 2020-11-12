@@ -1,5 +1,4 @@
 import {getInput, setFailed, info, setOutput, debug} from '@actions/core';
-import {exec} from '@actions/exec';
 import {context, GitHub} from '@actions/github';
 
 export async function run(): Promise<void> {
@@ -19,7 +18,20 @@ export async function run(): Promise<void> {
     }
 
     const version_commits = commits.filter(c => (c.message || '').match(regex));
-    info(`Found version commits:  + ${JSON.stringify(version_commits)}`);
+
+    if (version_commits.length === 0) {
+      info('No matching commits found.');
+    } else {
+      if (version_commits.length > 1) {
+        info(
+          `Found more than one matching commit in the pushed commits. Selecting first of ${JSON.stringify(
+            version_commits
+          )}`
+        );
+      }
+
+      setOutput('commit', version_commits[0].id);
+    }
   } catch (error) {
     setFailed(error.message);
   }
