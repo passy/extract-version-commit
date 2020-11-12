@@ -1,0 +1,56 @@
+{
+  "name": "tag-version-commit",
+  "version": "1.1.1",
+  "private": true,
+  "description": "GitHub action for tagging commits whose title matches a version regex",
+  "main": "lib/main.js",
+  "scripts": {
+    "build": "tsc",
+    "format": "prettier --write **/*.ts",
+    "format-check": "prettier --check **/*.ts",
+    "lint": "eslint src/**/*.ts",
+    "pack": "ncc build",
+    "test": "jest",
+    "test-coverage": "jest --coverage",
+    "all": "npm run build && npm run format-check && npm run lint && npm run pack && npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/christophebedard/tag-version-commit.git"
+  },
+  "keywords": [
+    "github",
+    "actions",
+    "git",
+    "tag",
+    "version"
+  ],
+  "author": "Christophe Bedard",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/christophebedard/tag-version-commit/issues"
+  },
+  "homepage": "https://github.com/christophebedard/tag-version-commit#readme",
+  "dependencies": {
+    "@actions/core": "^1.2.6",
+    "@actions/exec": "^1.0.4",
+    "@actions/github": "^2.2.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.15",
+    "@types/nock": "^11.1.0",
+    "@types/node": "^14.14.5",
+    "@typescript-eslint/parser": "^4.6.0",
+    "@vercel/ncc": "^0.25.1",
+    "eslint": "^7.12.1",
+    "eslint-plugin-github": "^4.1.1",
+    "eslint-plugin-jest": "^24.1.0",
+    "jest": "^24.9.0",
+    "jest-circus": "^26.6.1",
+    "js-yaml": "^3.14.0",
+    "nock": "^13.0.4",
+    "prettier": "^2.1.2",
+    "ts-jest": "^24.2.0",
+    "typescript": "^4.0.5"
+  }
+}

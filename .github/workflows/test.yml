@@ -1,0 +1,31 @@
+name: 'test'
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+      - 'releases/*'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - run: |
+        npm ci
+        npm run all
+    - run: |
+        npm run test-coverage
+    - name: Upload coverage data
+      uses: codecov/codecov-action@v1
+      with:
+        fail_ci_if_error: true
+  test-action:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: ./
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        version_assertion_command: 'grep -q "\"version\": \"$version\"" package.json'
+        dry_run: true
