@@ -9,9 +9,9 @@ Steps:
 
 * Build and pack
     ```shell
-    $ npm run build
-    $ npm run pack
-    $ npm run all  # or this
+    $ yarn run build
+    $ yarn run pack
+    $ yarn run all  # or this
     ```
 * Commit the files generated after the above command
 * Tag/release
@@ -21,7 +21,7 @@ Steps:
             $ git tag vN
             $ git push origin master --tags
             ```
-        * [Create new release](https://github.com/christophebedard/tag-version-commit/releases) pointing to `vN` tag.
+        * [Create new release](https://github.com/passy/extract-version-commit/releases) pointing to `vN` tag.
     * Update current release (same major version, `vN`)
         * Update `vN` tag to point to newer commit. No need to change/modify the release on GitHub.com, since it still points to the same `vN` tag.
             ```shell

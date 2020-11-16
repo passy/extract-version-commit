@@ -15,6 +15,14 @@ module.exports = JSON.parse("{\"name\":\"@octokit/rest\",\"version\":\"16.43.2\"
 
 "use strict";
 
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ * @format
+ */
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -39,11 +47,13 @@ function run() {
             const commits = github_1.context.payload['commits'];
             if (!commits) {
                 core_1.info('No commits provided.');
+                core_1.setOutput('commit', '');
                 return;
             }
             const version_commits = commits.filter((c) => (c.message || '').match(regex));
             if (version_commits.length === 0) {
                 core_1.info('No matching commits found.');
+                core_1.setOutput('commit', '');
             }
             else {
                 if (version_commits.length > 1) {
