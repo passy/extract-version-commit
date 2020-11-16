@@ -1,3 +1,12 @@
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ * @format
+ */
+
 import {getInput, setFailed, info, setOutput} from '@actions/core';
 import {context} from '@actions/github';
 
@@ -14,6 +23,7 @@ export async function run(): Promise<void> {
 
     if (!commits) {
       info('No commits provided.');
+      setOutput('commit', '');
       return;
     }
 
@@ -23,6 +33,7 @@ export async function run(): Promise<void> {
 
     if (version_commits.length === 0) {
       info('No matching commits found.');
+      setOutput('commit', '');
     } else {
       if (version_commits.length > 1) {
         info(
