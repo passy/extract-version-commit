@@ -1,4 +1,4 @@
-# tag-version-commit GitHub Action
+# extract-version-commit GitHub Action
 
 > GitHub action for extracting commits from a push whose title matches a version regex.
 
